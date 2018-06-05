@@ -1,0 +1,140 @@
+@charset "utf-8";
+/**
+ * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
+ * http://cssreset.com
+ */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video, input {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: normal;
+    font: 12px/1 Microsoft YaHei,"微软雅黑","Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB",Arial,sans-serif;
+    color: #333;
+}
+
+h1, h2, h3, h4, h5, h6 { font-size: 100%; }
+address, cite, dfn, i, em, var { font-style: normal; } /* 将斜体扶正 */
+code, kbd, pre, samp { font-family: courier new, courier, monospace; } /* 统一等宽字体 */
+small { font-size: 12px; } /* 小于 12px 的中文很难阅读，让 small 正常化 */
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, menu, nav, section {
+    display: block;
+}
+/** 重置列表元素 **/
+ul, ol { list-style: none; }
+
+/*body设置*/
+body {
+    -webkit-text-size-adjust: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    background: #fff;
+    min-height: 100%;
+}
+
+/*个人设置 i span 喜欢设置大小来用当icon的容器 所以设为行内元素*/
+i,span{
+    display: inline-block;
+}
+
+/* 设置默认的a标签样式 */
+a {
+    color: #333;
+    text-decoration: none;
+    -webkit-backface-visibility: hidden;
+}
+/*解决手机端下a input标签按下的阴影*/
+a,input{-webkit-tap-highlight-color:rgba(255,0,0,0);}
+
+
+/* 重置表格元素 默认重合单元格 */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*清除ios默认颜色*/
+input,button,select{
+    -webkit-appearance: none;
+    border: none;
+    border-radius: 0;
+    outline: none;
+}
+
+/*去掉图片默认边框，自适应大小 img 搭车：让链接里的 img 无边框 */
+img{
+    width: 100%;
+    border: 0;
+    -webkit-background-size:cover;
+    background-size: cover;
+    vertical-align: middle;
+    -webkit-user-select: none;
+}
+/* html5 的媒体标签跟 img 标签保持一致 */
+audio, canvas, video {
+    display:inline-block;
+    *display:inline;
+    *zoom:1;
+}
+
+/** 重置表单元素 **/
+legend { color: #333; } /* for ie6 */
+button, input, select, textarea { font-size: 100%; } /* 使得表单元素在 ie 下能继承字体大小 */
+/* 注：optgroup 无法扶正 */
+
+
+
+
+
+/*滚动条默认样式优化 针对移动端和-webkit（谷歌）的内核的浏览器*/
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track-piece {
+    background-color: rgba(0, 0, 0, 0.2);
+    -webkit-border-radius: 6px;
+}
+/*定义滑块 内阴影+圆角 vertical伪类适用于任何垂直方向的滚动条 */
+::-webkit-scrollbar-thumb:vertical {
+    height: 5px;
+    background-color: rgba(125, 125, 125, 0.7);
+    -webkit-border-radius: 6px;
+}
+
+/*定义滑块 内阴影+圆角 horizontal伪类适用于任何水平方向上的滚动条*/
+::-webkit-scrollbar-thumb:horizontal {
+    width: 5px;
+    background-color: rgba(125, 125, 125, 0.7);
+    -webkit-border-radius: 6px;
+}
+
+/*重置input-placeholder 颜色*/
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:#999;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:#999;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:#999;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:#999;
+}
