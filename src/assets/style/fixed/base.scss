@@ -1,5 +1,3 @@
-// 优化显示
-
 html, body {
   margin: 0px;
   height: 100%;
@@ -17,5 +15,13 @@ html, body {
     a {
       text-decoration: none;
     }
+  }
+  img {
+    border: 0 none;
+    vertical-align: bottom;
+  }
+  ul, ol {
+    list-style-type: none;
+    padding: 0;
   }
 }
