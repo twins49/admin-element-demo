@@ -1,0 +1,7 @@
+@mixin mrFn($direction:'',$width:'5px') {
+  @if $direction{
+    margin-#{$direction}:$width;
+  }@else{
+    margin:$width;
+  }
+}

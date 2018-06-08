@@ -1,26 +1,31 @@
 <template>
   <el-container class="layout-main" :class="theme">
     <el-header>
-      <div class="logo-group" :style="logoGroupStyle">
-        <img v-if="collapse" src="@/assets/image/logo/header-icon-only.png">
-        <img v-else src="@/assets/image/logo/header.png">
-      </div>
-      <div class="toggle-sidemenu-btn" @click="toggleAside">
-        <Icon name="bars"></Icon>
-      </div>
-      <el-popover
-        placement="bottom"
-        width="400"
-        trigger="click">
-        <ul class='menue-right-list'>
-          <li></li>
-        </ul>
-        <div class="menue-right" slot='reference'>
-            Hi~&nbsp;&nbsp;&nbsp;<i class="fa fa-user-o" aria-hidden="true"></i>
-            <span>admin</span>
-        </div>
-      </el-popover>
-
+      <el-row>
+        <el-col :span="22">
+          <div class="logo-group" :style="logoGroupStyle">
+            <img v-if="collapse" src="@/assets/image/logo/header-icon-only.png">
+            <img v-else src="@/assets/image/logo/header.png">
+          </div>
+          <div class="toggle-sidemenu-btn" @click="toggleAside">
+            <Icon name="bars"></Icon>
+          </div>
+        </el-col>
+        <el-col :span="2">
+          <el-dropdown>
+            <div class="el-dropdown-link" >
+                Hi~&nbsp;&nbsp;&nbsp;<i class="fa fa-user-o" aria-hidden="true"></i>
+                <span>admin</span>
+            </div>
+              <el-dropdown-menu  slot="dropdown">
+              <el-dropdown-item><i class="fa fa-sign-out mr10" aria-hidden="true"></i>
+                退出登录</el-dropdown-item>
+              <el-dropdown-item><i class="fa fa-user-circle-o mr10" aria-hidden="true"></i>
+                个人中心</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </el-col>
+      </el-row>
     </el-header>
   </el-container>
 </template>
@@ -32,23 +37,6 @@ export default {
   name: 'MainPage',
   data() {
     return {
-      gridData: [{
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄',
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄',
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄',
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄',
-      }],
       theme: 'default',
       collapse: false,
     };
@@ -72,12 +60,8 @@ export default {
 </script>
 
 <style scoped lang='scss'>
-.menue-right-list{
-  width: 300px;
-}
-.menue-right-lis li{
-  height: 30px;
-  text-align: center;
+.el-dropdown-link{
+  border: none;
 }
 .menue-right {
   float: right;
@@ -85,4 +69,5 @@ export default {
   color: #606266;
   font-size: 16px;
 }
+
 </style>
