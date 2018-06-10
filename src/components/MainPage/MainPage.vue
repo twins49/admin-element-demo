@@ -1,73 +1,89 @@
 <template>
   <el-container class="layout-main" :class="theme">
     <el-header>
-      <el-row>
-        <el-col :span="22">
-          <div class="logo-group" :style="logoGroupStyle">
-            <img v-if="collapse" src="@/assets/image/logo/header-icon-only.png">
-            <img v-else src="@/assets/image/logo/header.png">
-          </div>
-          <div class="toggle-sidemenu-btn" @click="toggleAside">
-            <Icon name="bars"></Icon>
-          </div>
-        </el-col>
-        <el-col :span="2">
-          <el-dropdown>
-            <div class="el-dropdown-link" >
-                Hi~&nbsp;&nbsp;&nbsp;<i class="fa fa-user-o" aria-hidden="true"></i>
-                <span>admin</span>
-            </div>
-              <el-dropdown-menu  slot="dropdown">
-              <el-dropdown-item><i class="fa fa-sign-out mr10" aria-hidden="true"></i>
-                退出登录</el-dropdown-item>
-              <el-dropdown-item><i class="fa fa-user-circle-o mr10" aria-hidden="true"></i>
-                个人中心</el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
-        </el-col>
-      </el-row>
+      <Header @collapseChange = 'collapseChange' />
     </el-header>
+    <el-main class='dd-p0 main'>
+      <Aside :collapsed='collapsed' />
+      <section class="content-container" :style="collapsed?'left:64px;':''">
+        <div class="grid-content bg-purple-light">
+          <el-col :span="24" class="breadcrumb-container">
+            <strong class="title">{{$route.name}}</strong>
+            <el-breadcrumb separator="/" class="breadcrumb-inner">
+              <el-breadcrumb-item v-for="item in $route.matched" :key="item.path">
+                {{ item.name }}
+              </el-breadcrumb-item>
+            </el-breadcrumb>
+          </el-col>
+          <el-col :span="24" class="content-wrapper">
+            <transition name="fade" mode="out-in">
+              <router-view></router-view>
+            </transition>
+          </el-col>
+        </div>
+      </section>
+    </el-main>
   </el-container>
 </template>
 
 <script>
-import Icon from 'components/Icon/Icon';
+import Header from 'views/header';
+import Aside from 'views/aside';
 
 export default {
   name: 'MainPage',
   data() {
     return {
       theme: 'default',
-      collapse: false,
+      collapsed: false,
     };
   },
   components: {
-    Icon,
-  },
-  computed: {
-    logoGroupStyle() {
-      return {
-        width: `${this.collapse ? '65' : '200'}px`,
-      };
-    },
+    Header,
+    Aside,
   },
   methods: {
-    toggleAside() {
-      this.collapse = !this.collapse;
+    collapseChange(collapse) {
+      this.collapsed = collapse;
     },
   },
 };
 </script>
 
 <style scoped lang='scss'>
-.el-dropdown-link{
-  border: none;
+.main {
+  display: flex;
+  // background: #324057;
+  position: relative;
+  bottom: 0px;
+  overflow: hidden;
+  .content-container {
+    // background: #f1f2f7;
+    background-color: #fff;
+    flex:1;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    left: 235px;
+    overflow-y: scroll;
+    width: 100%;
+    padding: 20px;
+    .breadcrumb-container {
+      //margin-bottom: 15px;
+      .title {
+        width: 200px;
+        float: left;
+        color: #475669;
+      }
+      .breadcrumb-inner {
+        float: right;
+      }
+    }
+    .content-wrapper {
+      background-color: #fff;
+      box-sizing: border-box;
+    }
+  }
 }
-.menue-right {
-  float: right;
-  padding: 10px;
-  color: #606266;
-  font-size: 16px;
-}
-
 </style>

@@ -20,6 +20,9 @@
 .mr10{
   margin-right:10px;
 }
+.#{$prefix}-p0 {
+  padding:0;
+}
 // 文字相关
 .#{$prefix}-text-center {
   text-align: center;
@@ -86,7 +89,9 @@
   line-height: (3em / 4);
   vertical-align: -15%;
 }
-
+.el-menu-item [class^=fa], .el-submenu [class^=fa] {
+  margin-right: 10px;
+}
 // .#{$fa-css-prefix}-2x {
 //   font-size: 2em;
 // }
