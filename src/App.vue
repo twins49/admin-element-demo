@@ -5,8 +5,6 @@
 </template>
 
 <script>
-// import MainPage from 'components/MainPage/MainPage';
-
 export default {
   name: 'App',
 
