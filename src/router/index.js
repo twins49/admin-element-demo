@@ -4,8 +4,6 @@ import Login from 'views/Login';
 import NotFound from 'views/404';
 import Home from 'components/MainPage/MainPage';
 import Page4 from 'views/nav2/Page4';
-import Ad from 'views/ad';
-import Ad2 from 'views/ad2';
 import { createStore } from '../store';
 
 const store = createStore();
@@ -29,30 +27,14 @@ const routes = [
     component: Home,
     name: '导航二',
     meta: {
-      // requireAuth: true,
+      requireAuth: true,
     },
     iconCls: 'fa fa-id-card-o',
     children: [
       { path: '/page4', component: Page4, name: '页面4' },
     ],
   },
-  {
-    path: '/ad',
-    component: Ad,
-    name: 'Ad',
-    children: [
-      {
-        path: 'ad2',
-        name: 'Ad2',
-        redirect: '/ad2',
-      },
-    ],
-  },
-  {
-    path: '/ad2',
-    name: 'Ad2',
-    component: Ad2,
-  },
+
 ];
 const router = new Router({
   routes,

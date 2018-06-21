@@ -2,6 +2,7 @@
   <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2"
    label-position="left" label-width="0px" class="demo-ruleForm login-container">
     <h3 class="title">系统登录</h3>
+    <div class='errorTip' v-if='errorTip'>{{errorTip}}</div>
     <el-form-item prop="account">
       <el-input type="text"
        v-model="ruleForm2.account" auto-complete="off" placeholder="账号"></el-input>
@@ -14,7 +15,6 @@
     <el-form-item style="width:100%;">
       <el-button type="primary" style="width:100%;"
        @click.native.prevent="handleSubmit2">登录</el-button>
-      <!--<el-button @click.native.prevent="handleReset2">重置</el-button>-->
     </el-form-item>
   </el-form>
 </template>
@@ -24,6 +24,7 @@ export default {
   data() {
     return {
       logining: false,
+      errorTip: '',
       ruleForm2: {
         account: 'admin',
         checkPass: '123456',
@@ -31,20 +32,16 @@ export default {
       rules2: {
         account: [
           { required: true, message: '请输入账号', trigger: 'blur' },
-          // { validator: validaePass }
         ],
         checkPass: [
           { required: true, message: '请输入密码', trigger: 'blur' },
-          // { validator: validaePass2 }
         ],
       },
       checked: true,
     };
   },
   methods: {
-    handleReset2() {
-      this.$refs.ruleForm2.resetFields();
-    },
+    // 提交表单
     handleSubmit2() {},
   },
 };
@@ -70,6 +67,12 @@ export default {
     }
     .remember {
       margin: 0px 0px 35px 0px;
+    }
+    .errorTip {
+      color:crimson;
+      position: relative;
+      top: -16px;
+      font-size:14px;
     }
   }
 </style>

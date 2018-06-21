@@ -1,7 +1,9 @@
 const router = require('koa-router')();
+const UserController = require('../controllers/users/UserController.js');
 
-router.get('/api/user/login', (ctx) => {
-  ctx.body = 'this a users response!';
+router.post('/login', async (ctx) => {
+  ctx.body = ctx.request.body;
+  // UserController.login(ctx);
 });
 
 module.exports = router;
