@@ -4,7 +4,7 @@
     <h3 class="title">系统登录</h3>
     <div class='errorTip' v-if='errorTip'>{{errorTip}}</div>
     <el-form-item prop="account">
-      <el-input type="text"
+      <el-input type="text" prop ='account'
        v-model="ruleForm2.account" auto-complete="off" placeholder="账号"></el-input>
     </el-form-item>
     <el-form-item prop="checkPass">
@@ -14,27 +14,29 @@
     <el-checkbox v-model="checked" checked class="remember">记住密码</el-checkbox>
     <el-form-item style="width:100%;">
       <el-button type="primary" style="width:100%;"
-       @click.native.prevent="handleSubmit2">登录</el-button>
+       @click.native.prevent="handleSubmit2('ruleForm2')">登录</el-button>
     </el-form-item>
   </el-form>
 </template>
 
 <script>
+import login from 'api/loginApi';
+
 export default {
   data() {
     return {
       logining: false,
       errorTip: '',
       ruleForm2: {
-        account: 'admin',
-        checkPass: '123456',
+        account: '',
+        checkPass: '',
       },
       rules2: {
         account: [
-          { required: true, message: '请输入账号', trigger: 'blur' },
+          { required: true, message: '请输入账号', trigger: 'change' },
         ],
         checkPass: [
-          { required: true, message: '请输入密码', trigger: 'blur' },
+          { required: true, message: '请输入密码', trigger: 'change' },
         ],
       },
       checked: true,
@@ -42,7 +44,17 @@ export default {
   },
   methods: {
     // 提交表单
-    handleSubmit2() {},
+    handleSubmit2(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          login(this.ruleForm2).then((res) => {
+            window.console.log(res);
+            return 111;
+          });
+        }
+        return false;
+      });
+    },
   },
 };
 </script>

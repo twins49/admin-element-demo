@@ -40,6 +40,7 @@ module.exports = {
       'mixins': resolve('src/mixins'),
       'plugins': resolve('src/plugins'),
       'views': resolve('src/views'),
+      'api': resolve('src/api'),
     }
   },
   module: {
