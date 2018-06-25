@@ -1,26 +1,24 @@
 /* eslint-disable */
 const Koa = require('koa');
 const app = new Koa();
-
+const mongoose = require('mongoose');
 class UserController {
-  // 用户注册
-  async register() {
-    // await ……
-    app.use( ctx => {
-      let request = ctx.request
-      let request_query = request.query
-      let request_querystring = request.querystring
-
-      let ctx_query = ctx.query
-      let ctx_querystring = ctx.querystring
-
-      ctx.body = {
-          request_query,
-          request_querystring,
-          ctx_query,
-          ctx_querystring
-      }
-    })
+  // 后台用户注册
+  register(ctx) {
+    const data = ctx.request.body.data;
+    const User = mongoose.model('User');
+    const newUser = new User(ctx.request.body);
+      newUser.save().then(
+        ctx.body = {
+          code:200,
+          message:'注册成功'
+        }
+      ).catch(
+        ctx.body = {
+          code:500,
+          message:error
+        }
+      )
   }
 
   // 用户登录

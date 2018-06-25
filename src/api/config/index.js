@@ -3,7 +3,8 @@
 const baseUrl = 'http://localhost:3000/api/v1';
 
 const loginApi = {
-  accountLogin: `${baseUrl}/users/login`,
+  accountLogin: `${baseUrl}/admin-users/login`,
+  accountRegister: `${baseUrl}/admin-users/register`
 }
 
 export  {

@@ -2,7 +2,12 @@
 import { axios } from '../utils/http';
 import { loginApi } from './config/';
 
-export default function login(parms) {
+export function login(parms) {
   return axios.post(loginApi.accountLogin, parms)
+    .then(res => res);
+}
+
+export function register(parms) {
+  return axios.post(loginApi.accountRegister, JSON.stringify(parms))
     .then(res => res);
 }

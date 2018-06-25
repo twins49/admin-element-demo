@@ -4,9 +4,11 @@
       <Header @collapseChange = 'collapseChange' />
     </el-header>
     <el-main class='dd-p0 main'>
+      <!-- 侧边栏 -->
       <Aside :collapsed='collapsed' />
       <section class="content-container" :style="collapsed?'left:64px;':''">
         <div class="grid-content bg-purple-light">
+          <!-- 页面最顶上的title -->
           <el-col :span="24" class="breadcrumb-container">
             <strong class="title">{{$route.name}}</strong>
             <el-breadcrumb separator="/" class="breadcrumb-inner">
@@ -68,7 +70,7 @@ export default {
     left: 235px;
     overflow-y: scroll;
     width: 100%;
-    padding: 20px;
+    padding: 0 20px 20px 20px;
     .breadcrumb-container {
       //margin-bottom: 15px;
       .title {

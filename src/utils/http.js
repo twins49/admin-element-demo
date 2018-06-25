@@ -9,9 +9,9 @@ const httpRequest = axios.create({
 axios.interceptors.request.use(
   /* eslint-disable */
   (config) => {
-    config.data = JSON.stringify(config.data);
+    config.data = config.data;
     config.headers = {
-      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Type': 'application/json',
     };
     return config;
   },

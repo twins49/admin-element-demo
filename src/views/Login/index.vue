@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import login from 'api/loginApi';
+import { login } from 'api/adminLoginApi';
 
 export default {
   data() {

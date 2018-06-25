@@ -6,11 +6,12 @@ const glob = require('glob');
 
 const { resolve } = require('path');
 
-
+// 导出所有的 schema 结构表
 exports.initSchemas = () => {
   glob.sync(resolve(__dirname, './schema/', '**/*.js')).forEach(require);
 };
 
+//
 exports.connect = () => {
   let maxConnectTime = 0;
   // 连接数据库
@@ -29,7 +30,7 @@ exports.connect = () => {
       }
     });
 
-    // 数据库连接出错
+    // 数据库连接出错(重连次数不超过3)
     mongoose.connection.on('error', (err) => {
       console.log('***数据库连接出错*****');
       if (maxConnectTime < 3) {
@@ -44,7 +45,7 @@ exports.connect = () => {
     // 数据库连接成功时(只一次)
     mongoose.connection.once('open', () => {
       console.log('Mongodb connect successfully');
-      resolve();
+      resolve(); // 记得一定要有这个
     });
   });
 };
