@@ -3,12 +3,12 @@
    label-position="left" label-width="0px" class="demo-ruleForm login-container">
     <h3 class="title">系统登录</h3>
     <div class='errorTip' v-if='errorTip'>{{errorTip}}</div>
-    <el-form-item prop="account">
-      <el-input type="text" prop ='account'
-       v-model="ruleForm2.account" auto-complete="off" placeholder="账号"></el-input>
+    <el-form-item prop="name">
+      <el-input type="text"
+       v-model="ruleForm2.name" auto-complete="off" placeholder="账号"></el-input>
     </el-form-item>
-    <el-form-item prop="checkPass">
-      <el-input type="password" v-model="ruleForm2.checkPass"
+    <el-form-item prop="pwd">
+      <el-input type="password" v-model="ruleForm2.pwd"
        auto-complete="off" placeholder="密码"></el-input>
     </el-form-item>
     <el-checkbox v-model="checked" checked class="remember">记住密码</el-checkbox>
@@ -28,14 +28,14 @@ export default {
       logining: false,
       errorTip: '',
       ruleForm2: {
-        account: '',
-        checkPass: '',
+        name: '',
+        pwd: '',
       },
       rules2: {
-        account: [
+        name: [
           { required: true, message: '请输入账号', trigger: 'change' },
         ],
-        checkPass: [
+        pwd: [
           { required: true, message: '请输入密码', trigger: 'change' },
         ],
       },
@@ -47,6 +47,7 @@ export default {
     handleSubmit2(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
+          window.console.warn(this.ruleForm2);
           login(this.ruleForm2).then((res) => {
             window.console.log(res);
             return 111;

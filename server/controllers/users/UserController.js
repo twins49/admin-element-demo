@@ -5,9 +5,8 @@ const mongoose = require('mongoose');
 class UserController {
   // 后台用户注册
   register(ctx) {
-    const data = ctx.request.body.data;
-    const User = mongoose.model('User');
-    const newUser = new User(ctx.request.body);
+    const UserModel = mongoose.model('User');
+    const newUser = new UserModel(ctx.request.body);
       newUser.save().then(
         ctx.body = {
           code:200,
@@ -24,7 +23,11 @@ class UserController {
   // 用户登录
   async login(ctx) {
     // await ……
-    // ctx.body = ctx.request;
+    const param = ctx.request.body;
+    const UserModel = mongoose.model('User');
+    await UserModel.findOne(param, { _id: 1 }).exec().then(async (result) => {
+      ctx.body = result;
+    });
   }
 
   // 用户退出

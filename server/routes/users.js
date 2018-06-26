@@ -1,9 +1,10 @@
 const router = require('koa-router')();
 const UserController = require('../controllers/users/UserController.js');
+// const mongoose = require('mongoose');
+
 
 router.post('/login', async (ctx) => {
-  ctx.body = ctx.request.body;
-  // UserController.login(ctx);
+  await UserController.login(ctx);
 });
 
 router.post('/register', async (ctx) => {

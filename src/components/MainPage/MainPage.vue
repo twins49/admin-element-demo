@@ -11,11 +11,12 @@
           <!-- 页面最顶上的title -->
           <el-col :span="24" class="breadcrumb-container">
             <strong class="title">{{$route.name}}</strong>
-            <el-breadcrumb separator="/" class="breadcrumb-inner">
+            <!-- 面包屑 -->
+            <!-- <el-breadcrumb separator="/">
               <el-breadcrumb-item v-for="item in $route.matched" :key="item.path">
                 {{ item.name }}
               </el-breadcrumb-item>
-            </el-breadcrumb>
+            </el-breadcrumb> -->
           </el-col>
           <el-col :span="24" class="content-wrapper">
             <transition name="fade" mode="out-in">
@@ -49,6 +50,9 @@ export default {
       this.collapsed = collapse;
     },
   },
+  created() {
+    window.console.log(this.$route.matched);
+  },
 };
 </script>
 
@@ -72,11 +76,12 @@ export default {
     width: 100%;
     padding: 0 20px 20px 20px;
     .breadcrumb-container {
-      //margin-bottom: 15px;
+      // margin-bottom: 15px;
       .title {
         width: 200px;
         float: left;
         color: #475669;
+        padding: 15px 0;
       }
       .breadcrumb-inner {
         float: right;

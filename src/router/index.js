@@ -28,9 +28,9 @@ const routes = [
     path: '/',
     component: Home,
     name: '导航二',
-    // meta: {
-    //   requireAuth: true,
-    // },
+    meta: {
+      requireAuth: true,
+    },
     iconCls: 'fa fa-id-card-o',
     children: [
       { path: '/page4', component: Page4, name: '页面4' },
@@ -54,7 +54,7 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(r => r.meta.requireAuth)) {
-    if (store.state.token) {
+    if (store.state.token || window.localStorage.removeItem('token')) {
       next();
     } else {
       next({
