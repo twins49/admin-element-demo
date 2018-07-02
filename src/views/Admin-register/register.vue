@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { register } from 'api/adminLoginApi';
+import { register } from 'api/adminApi';
 
 export default {
   name: 'admin-register',

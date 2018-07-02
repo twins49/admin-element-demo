@@ -2,46 +2,60 @@
   <el-table
     :data="tableData"
     border
-    style="width: 100%">
+   >
     <el-table-column
-      prop="date"
-      label="日期"
-      width="180">
+    prop="authority"
+    label="账号权限"
+    align='center'
+    width="180"
+    >
+    </el-table-column>
+    <el-table-column
+      prop="createTime"
+      label="创建日期"
+      align='center'
+      width="180"
+     >
+    </el-table-column>
+    <el-table-column
+      prop="lastLogin"
+      label="最后登录日期"
+      align='center'
+      width="180"
+      >
     </el-table-column>
     <el-table-column
       prop="name"
-      label="姓名"
-      width="180">
-    </el-table-column>
-    <el-table-column
-      prop="address"
-      label="地址">
+      label="账号名称"
+      align='center'
+      width="180"
+      >
     </el-table-column>
   </el-table>
 </template>
 
 <script>
+import { adminAccountLists } from 'api/adminApi';
+
 export default {
   data() {
     return {
-      tableData: [{
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄',
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄',
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄',
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄',
-      }],
+      tableData: [],
     };
+  },
+  created() {
+    this.initData();
+  },
+  methods: {
+    initData() {
+      adminAccountLists().then((res) => {
+        const { code, data } = res.data;
+        if (code === 200) {
+          this.tableData = data;
+          window.console.log(this.tableData);
+        }
+      });
+    },
   },
 };
 </script>

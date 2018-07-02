@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { login } from 'api/adminLoginApi';
+import { mapActions } from 'vuex';
 
 export default {
   data() {
@@ -43,17 +43,25 @@ export default {
     };
   },
   methods: {
+    ...mapActions('adminLogin', ['login']),
     // 提交表单
     handleSubmit2(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          window.console.warn(this.ruleForm2);
-          login(this.ruleForm2).then((res) => {
-            window.console.log(res);
-            return 111;
-          });
+          this.login(this.ruleForm2)
+            .then((res) => {
+              if (res.code === 200) {
+                // 如果用户手动输入"/"那么会跳转到这里来，即this.$route.query.redirect有参数
+                const redirectUrl = decodeURIComponent(this.$route.query.redirect || '/');
+                // 跳转到指定的路由
+                this.$router.push({
+                  path: redirectUrl,
+                });
+              } else {
+                this.errorTip = res.message;
+              }
+            });
         }
-        return false;
       });
     },
   },
