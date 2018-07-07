@@ -41,6 +41,7 @@ module.exports = {
       'plugins': resolve('src/plugins'),
       'views': resolve('src/views'),
       'api': resolve('src/api'),
+      'scss_vars': '@/styles/vars.scss',
     }
   },
   module: {

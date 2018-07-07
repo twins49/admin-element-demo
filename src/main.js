@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
+import '@/assets/theme/theme-default/index.css';
 // font-awesome
 import '@/assets/library/font-awesome-4.7.0/css/font-awesome.min.css';
 
